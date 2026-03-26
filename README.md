@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # employee-management-system
 =======
 # React + Vite
@@ -18,3 +19,6 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 >>>>>>> 2ae7714 (add the project file)
+=======
+# employee-management-system
+>>>>>>> d709bbbfe443074cb0643ac73cfd392a3a939062
