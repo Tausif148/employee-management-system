@@ -1,4 +1,10 @@
 const Register = () => {
+
+    const handleSignup = (e) => {
+        e.preventDefault();
+        // your login logic
+    };
+
     return (
         <section className=" p-3 p-md-4 p-xl-5">
             <div className="container">
@@ -8,49 +14,55 @@ const Register = () => {
                             <div className="card-body p-3 p-md-4 p-xl-5">
                                 <div className="row">
                                     <div className="col-12">
-                                        <div className="mb-5">
+                                        <div className="mt-2 mb-3">
                                             <h4 className="text-center">Register Here</h4>
                                         </div>
                                     </div>
                                 </div>
-                                <form action="#">
+                                <form >
                                     <div className="row gy-3 overflow-hidden">
                                         <div className="col-12">
-                                            <div className="form-floating mb-3">
+                                            <div className="form-floating mb-1">
                                                 <input type="text" className="form-control" name="name" id="name" placeholder="Name" />
-                                                <label for="name" className="form-label">Name</label>
+                                                <label htmlFor="name" className="form-label">Name</label>
                                             </div>
                                         </div>
+
                                         <div className="col-12">
-                                            <div className="form-floating mb-3">
+                                            <div className="form-floating mb-1">
                                                 <input type="text" className="form-control" name="email" id="email" placeholder="name@example.com" />
-                                                <label for="email" className="form-label">Email</label>
+                                                <label htmlFor="email" className="form-label">Email</label>
                                             </div>
                                         </div>
+
                                         <div className="col-12">
-                                            <div className="form-floating mb-3">
+                                            <div className="form-floating mb-1">
                                                 <input type="password" className="form-control" name="password" id="password" placeholder="Password" />
-                                                <label for="password" className="form-label">Password</label>
+                                                <label htmlFor="password" className="form-label">Password</label>
                                             </div>
                                         </div>
+
                                         <div className="col-12">
-                                            <div className="form-floating mb-3">
+                                            <div className="form-floating mb-1">
                                                 <input type="password" className="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
-                                                <label for="confirm_password" className="form-label">Confirm Password</label>
+                                                <label htmlFor="confirm_password" className="form-label">Confirm Password</label>
                                             </div>
                                         </div>
+
                                         <div className="col-12">
                                             <div className="d-grid">
-                                                <button className="btn bsb-btn-xl btn-primary py-3" type="submit">Register Now</button>
+                                                <button className="btn bsb-btn-xl btn-primary py-3" type="submit">
+                                                    Register Now
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                 <div className="row">
                                     <div className="col-12">
-                                        <hr className="mt-5 mb-4 border-secondary-subtle" />
+                                        <hr className="border-secondary-subtle" />
                                         <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <a href="#" className="link-secondary text-decoration-none">Click here to login</a>
+                                            <a href="#" className="link-secondary text-decoration-none text-center" >Already have a account</a>
                                         </div>
                                     </div>
                                 </div>

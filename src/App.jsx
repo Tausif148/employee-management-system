@@ -1,11 +1,11 @@
 import './App.css'
 import Header from './layouts/Header.jsx'
-import Register from './compoenents/Register.jsx'
-import Login from './compoenents/Login.jsx'
-import Profile from './compoenents/Profile.jsx'
-import ChangePassword from './compoenents/ChangePassword.jsx'
-import AddEmployee from './compoenents/AddEmployee.jsx'
-import EmployeeList from './compoenents/EmpoyeeList.jsx'
+import Register from './pages/Register.jsx'
+import Login from './pages/Login.jsx'
+import Profile from './pages/Profile.jsx'
+import ChangePassword from './pages/ChangePassword.jsx'
+import AddEmployee from './pages/AddEmployee.jsx'
+import EmployeeList from './pages/EmpoyeeList.jsx'
 
 export default function App() {
   return (
