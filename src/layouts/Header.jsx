@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-        <div className="container-fluid shadow-lg header">
+        <header className="container-fluid shadow-lg header bg-success">
             <div className="container">
                 <div className="d-flex justify-content-between">
                     <h1 className="text-center"><a href="index.html" className="h3 text-white text-decoration-none">Logo</a></h1>
@@ -10,7 +10,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 

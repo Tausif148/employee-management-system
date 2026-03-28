@@ -51,7 +51,7 @@ const Register = () => {
 
                                         <div className="col-12">
                                             <div className="d-grid">
-                                                <button className="btn bsb-btn-xl btn-primary py-3" type="submit">
+                                                <button className="btn bsb-btn-xl btn-primary py-3 bg-success" type="submit">
                                                     Register Now
                                                 </button>
                                             </div>
@@ -62,7 +62,7 @@ const Register = () => {
                                     <div className="col-12">
                                         <hr className="border-secondary-subtle" />
                                         <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <a href="#" className="link-secondary text-decoration-none text-center" >Already have a account</a>
+                                            <a href="#" className="link-secondary text-decoration-none text-center text-black" >Already have a account</a>
                                         </div>
                                     </div>
                                 </div>

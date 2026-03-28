@@ -9,7 +9,7 @@ const Profile = () => {
                 <Sidebare ProfileImage={ProfileImage} />
                 <div className="col-md-9">
                     <div className="card border-0 shadow">
-                        <div className="card-header  text-white">
+                        <div className="card-header bg-success text-white">
                             Profile
                         </div>
                         <div className="card-body">
@@ -48,7 +48,7 @@ const Profile = () => {
                                     {/* <img width="150" className="img-fluid mt-4" src={ProfileImage} alt="profile-img" /> */}
                                 </div>
 
-                                <button className="btn btn-primary mt-2">Update</button>
+                                <button className="btn btn-primary bg-success mt-2">Update</button>
                             </form>
                         </div>
                     </div>

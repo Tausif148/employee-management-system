@@ -1,84 +1,130 @@
-import Sidebare from "../layouts/Sidebar";
-import ProfileImage from '../assets/images/profileImg.jpg'
-
+import { useState } from "react";
+import Sidebar from "../layouts/Sidebar";
+import ProfileImage from '../assets/images/profileImg.jpg';
 
 const AddEmployee = () => {
+
+    const [employee, setEmployee] = useState({
+        name: '',
+        post: '',
+        email: '',
+        phone: '',
+        image: null,
+        status: 'active'
+    });
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+
+        if (name === "image") {
+            setEmployee({ ...employee, image: files[0] });
+        } else {
+            setEmployee({ ...employee, [name]: value });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(employee); // later send to backend
+    };
+
     return (
         <div className="container">
             <div className="row my-5">
-                <Sidebare ProfileImage={ProfileImage} />
+                <Sidebar ProfileImage={ProfileImage} />
+
                 <div className="col-md-9">
                     <div className="card border-0 shadow">
-                        <div className="card-header  text-white">
-                            Add Book
+                        <div className="card-header bg-success text-white">
+                            Add Employee
                         </div>
+
                         <div className="card-body">
-                            <div className="mb-3">
-                                <label htmlFor="title" className="form-label">Title</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Title"
-                                    name="title"
-                                    id="title"
-                                />
-                            </div>
+                            <form onSubmit={handleSubmit}>
 
-                            <div className="mb-3">
-                                <label htmlFor="author" className="form-label">Author</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Author"
-                                    name="author"
-                                    id="author"
-                                />
-                            </div>
+                                {/* Name */}
+                                <div className="mb-3">
+                                    <label className="form-label">Full Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        className="form-control"
+                                        placeholder="Enter name"
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="description" className="form-label">Description</label>
-                                <textarea
-                                    name="description"
-                                    id="description"
-                                    className="form-control"
-                                    placeholder="Description"
-                                    cols="30"
-                                    rows="5"
-                                ></textarea>
-                            </div>
+                                {/* Position */}
+                                <div className="mb-3">
+                                    <label className="form-label">Position</label>
+                                    <input
+                                        type="text"
+                                        name="post"
+                                        className="form-control"
+                                        placeholder="Enter position"
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="image" className="form-label">Image</label>
-                                <input
-                                    type="file"
-                                    className="form-control"
-                                    name="image"
-                                    id="image"
-                                />
-                            </div>
+                                {/* Email */}
+                                <div className="mb-3">
+                                    <label className="form-label">Email</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="Enter email"
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="status" className="form-label">Status</label>
-                                <select
-                                    name="status"
-                                    id="status"
-                                    className="form-control"
-                                >
-                                    <option value="active">Active</option>
-                                    <option value="block">Block</option>
-                                </select>
-                            </div>
+                                {/* Phone */}
+                                <div className="mb-3">
+                                    <label className="form-label">Phone</label>
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        className="form-control"
+                                        placeholder="Enter phone number"
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
-                            <button className="btn btn-primary mt-2">
-                                Create
-                            </button>
+                                {/* Image */}
+                                <div className="mb-3">
+                                    <label className="form-label">Profile Image</label>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        className="form-control"
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                {/* Status */}
+                                <div className="mb-3">
+                                    <label className="form-label">Status</label>
+                                    <select
+                                        name="status"
+                                        className="form-control"
+                                        onChange={handleChange}
+                                    >
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+
+                                <button className="btn btn-success">
+                                    Create Employee
+                                </button>
+
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-
-}
+    );
+};
 
 export default AddEmployee;

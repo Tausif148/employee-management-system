@@ -49,7 +49,7 @@ const Login = () => {
 
                                         <div className="col-12">
                                             <div className="d-grid">
-                                                <button className="btn bsb-btn-xl btn-primary py-3" type="submit">
+                                                <button className="btn bsb-btn-xl btn-primary py-3 bg-success" type="submit">
                                                     Log In Now
                                                 </button>
                                             </div>
