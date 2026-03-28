@@ -10,10 +10,10 @@ export default function App() {
   return (
     <div className=''>
       <Header />
-      {/* <Register />
+      <Register />
       <Login />
       <Profile />
-      <ChangePassword /> */}
+      <ChangePassword />
       <EmployeeList />
       <AddEmployee />
     </div>
