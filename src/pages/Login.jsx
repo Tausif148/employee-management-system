@@ -15,7 +15,7 @@ const Login = () => {
                                 <div className="row">
                                     <div className="col-12">
                              <div className="mt-2 mb-3">
-                                            <h4 className="text-center">Login Here</h4>
+                                            <h4 className="text-center">Login</h4>
                                         </div>
                                     </div>
                                 </div>

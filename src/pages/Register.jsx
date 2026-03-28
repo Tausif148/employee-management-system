@@ -6,7 +6,7 @@ const Register = () => {
     };
 
     return (
-        <section className=" p-3 p-md-4 p-xl-5">
+        <section className=" p-3 p-md-4 p-xl-5 h-100vh">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
@@ -15,7 +15,7 @@ const Register = () => {
                                 <div className="row">
                                     <div className="col-12">
                                         <div className="mt-2 mb-3">
-                                            <h4 className="text-center">Register Here</h4>
+                                            <h4 className="text-center">Signup</h4>
                                         </div>
                                     </div>
                                 </div>

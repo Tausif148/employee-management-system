@@ -1,4 +1,3 @@
-import './App.css'
 import Header from './layouts/Header.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
@@ -9,15 +8,15 @@ import EmployeeList from './pages/EmpoyeeList.jsx'
 
 export default function App() {
   return (
-    <>
+    <div className=''>
       <Header />
-      <Register />
+      {/* <Register />
       <Login />
       <Profile />
-      <ChangePassword />
+      <ChangePassword /> */}
       <EmployeeList />
       <AddEmployee />
-    </>
+    </div>
   )
 }
 
