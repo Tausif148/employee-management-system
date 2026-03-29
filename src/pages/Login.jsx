@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Login = () => {
 
     const handleLogin = (e) => {
@@ -14,7 +16,7 @@ const Login = () => {
                             <div className="card-body p-3 p-md-4 p-xl-5">
                                 <div className="row">
                                     <div className="col-12">
-                             <div className="mt-2 mb-3">
+                                        <div className="mt-2 mb-3">
                                             <h4 className="text-center">Login</h4>
                                         </div>
                                     </div>
@@ -60,7 +62,7 @@ const Login = () => {
                                     <div className="col-12">
                                         <hr className="border-secondary-subtle" />
                                         <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <a href="#" className="link-secondary text-decoration-none text-center">Create new account</a>
+                                            <Link to="/signup" className="link-secondary text-decoration-none text-center">Create new account</Link>
                                         </div>
                                     </div>
                                 </div>

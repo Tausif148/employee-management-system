@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Register = () => {
 
     const handleSignup = (e) => {
@@ -62,7 +64,7 @@ const Register = () => {
                                     <div className="col-12">
                                         <hr className="border-secondary-subtle" />
                                         <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <a href="#" className="link-secondary text-decoration-none text-center text-black" >Already have a account</a>
+                                            <Link to="/login" className="link-secondary text-decoration-none text-center text-black" >Already have a account</Link>
                                         </div>
                                     </div>
                                 </div>

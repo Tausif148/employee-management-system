@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ProfileImage from '../assets/images/profileImg.jpg';
-import EmployeeDetails from './EmployeeDetails';
+import EmployeeDetails from '../component/EmployeeDetails';
+import { Link } from "react-router";
 
 const EmployeeList = () => {
 
@@ -40,7 +41,8 @@ const EmployeeList = () => {
                 <div className="col-md-12">
                     <div className="d-flex justify-content-between">
                         <h2>Employee List</h2>
-                        <button className="btn btn-primary bg-success">Add New</button>
+                        {/* <button className="btn btn-primary bg-success">Add New</button> */}
+                        <Link className="btn btn-primary bg-success d-flex align-items-center" to="/addemployee" >Add New</Link>
                     </div>
 
                     {/* SEARCH */}

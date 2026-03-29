@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../layouts/Sidebar";
 import ProfileImage from '../assets/images/profileImg.jpg';
+import { Link } from "react-router";
 
 const AddEmployee = () => {
 
@@ -114,16 +115,16 @@ const AddEmployee = () => {
                                     </select>
                                 </div>
 
-                                <button className="btn btn-success">
+                                <button className="btn btn-success" style={{ marginRight: '10px' }}>
                                     Create Employee
                                 </button>
-
+                                <Link className="ml-3 btn btn-success" to='/'>Empoyee List</Link>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
