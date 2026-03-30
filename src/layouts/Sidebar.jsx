@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 const Sidebar = ({ ProfileImage }) => {
     return (
@@ -24,16 +25,17 @@ const Sidebar = ({ ProfileImage }) => {
                 <div className="card-body sidebar">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <a href="profile.html">Profile</a>
+                            <Link to="/profile">Profile</Link>
                         </li>
                         <li className="nav-item">
-                            <a href="my-reviews.html">My Task</a>
+                            <a href="#">My Task</a>
+
                         </li>
                         <li className="nav-item">
-                            <a href="change-password.html">Change Password</a>
+                            <Link to="/changepassword">Change Password</Link>
                         </li>
                         <li className="nav-item">
-                            <a href="login.html">Logout</a>
+                            <a href="#">Logout</a>
                         </li>
                     </ul>
                 </div>

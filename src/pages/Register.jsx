@@ -1,75 +1,85 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
 const Register = () => {
 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const handleSignup = (e) => {
         e.preventDefault();
-        // your login logic
+        // console.log("Signup form submitted with:", { name, email, password, confirmPassword });  // cgecking if form data is captured correctly
+
     };
 
     return (
-        <section className=" p-3 p-md-4 p-xl-5 h-100vh">
+        <section className="min-vh-100 d-flex align-items-center justify-content-center p-3 p-md-4 p-xl-5 bg-light">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                        <div className="card border border-light-subtle rounded-4">
+                        <div className="card border-0 shadow-lg bg-white rounded-4">
                             <div className="card-body p-3 p-md-4 p-xl-5">
-                                <div className="row">
-                                    <div className="col-12">
-                                        <div className="mt-2 mb-3">
-                                            <h4 className="text-center">Signup</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <form >
-                                    <div className="row gy-3 overflow-hidden">
+                                <h4 className="text-center mb-4 fw-bold">Signup</h4>
+                                <form onSubmit={handleSignup} >
+                                    <div className="row gy-3">
                                         <div className="col-12">
-                                            <div className="form-floating mb-1">
-                                                <input type="text" className="form-control" name="name" id="name" placeholder="Name" />
-                                                <label htmlFor="name" className="form-label">Name</label>
+                                            <div class="alert alert-danger text-center" role="alert">
+                                                All fields are required.
+                                            </div>
+                                            <div class="alert alert-success text-center" role="alert">
+                                                Signup successful!
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="form-floating mb-1">
-                                                <input type="text" className="form-control" name="email" id="email" placeholder="name@example.com" />
-                                                <label htmlFor="email" className="form-label">Email</label>
+                                            <div className="form-floating">
+                                                <input type="text" className="form-control" id="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                                <label htmlFor="name">Name</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="form-floating mb-1">
-                                                <input type="password" className="form-control" name="password" id="password" placeholder="Password" />
-                                                <label htmlFor="password" className="form-label">Password</label>
+                                            <div className="form-floating">
+                                                <input type="email" className="form-control" id="email" placeholder="name@example.com" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                                <label htmlFor="email">Email</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="form-floating mb-1">
-                                                <input type="password" className="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
-                                                <label htmlFor="confirm_password" className="form-label">Confirm Password</label>
+                                            <div className="form-floating">
+                                                <input type="password" className="form-control" id="password" placeholder="Password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                                <label htmlFor="password">Password</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="d-grid">
-                                                <button className="btn bsb-btn-xl btn-primary py-3 bg-success" type="submit">
-                                                    Register Now
-                                                </button>
+                                            <div className="form-floating">
+                                                <input type="password" className="form-control" id="confirm_password" placeholder="Confirm Password" autoComplete="new-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                                <label htmlFor="confirm_password">Confirm Password</label>
                                             </div>
+                                        </div>
+
+                                        <div className="col-12">
+                                            <button className="btn btn-success w-100 py-3 fw-semibold">
+                                                Register Now
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
-                                <div className="row">
-                                    <div className="col-12">
-                                        <hr className="border-secondary-subtle" />
-                                        <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <Link to="/login" className="link-secondary text-decoration-none text-center text-black" >Already have a account</Link>
-                                        </div>
-                                    </div>
+
+                                <hr className="my-4" />
+
+                                <div className="text-center">
+                                    <Link to="/login" className="text-decoration-none text-dark">
+                                        Already have an account?
+                                    </Link>
                                 </div>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import EmployeeList from "../pages/EmpoyeeList.jsx";
 import AddEmployee from "../pages/AddEmployee.jsx";
 import ChangePassword from "../pages/ChangePassword.jsx";
 import Profile from "../pages/Profile.jsx";
+import PageNotFound from "../pages/PageNotFound.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
                 path: "/addemployee",
                 element: <AddEmployee />,
             },
+            {
+                path: "/profile",
+                element: <Profile />,
+            },
+            {
+                path: "/changepassword",
+                element: <ChangePassword />,
+            }
         ]
     },
     {
@@ -31,13 +40,9 @@ const router = createBrowserRouter([
         element: <Login />,
     },
     {
-        path: "/profile",
-        element: <Profile />,
+        path: "/*",
+        element: <PageNotFound />,
     },
-    {
-        path: "/changepassword",
-        element: <ChangePassword />,
-    }
 ]);
 
 export default router;

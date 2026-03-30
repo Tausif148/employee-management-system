@@ -3,7 +3,6 @@ import ProfileImage from '../assets/images/profileImg.jpg'
 
 const Profile = () => {
     return (
-
         <div className="container">
             <div className="row my-5">
                 <Sidebare ProfileImage={ProfileImage} />
@@ -13,7 +12,7 @@ const Profile = () => {
                             Profile
                         </div>
                         <div className="card-body">
-                            <form >
+                            <form>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name</label>
                                     <input

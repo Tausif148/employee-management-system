@@ -8,66 +8,64 @@ const Login = () => {
     };
 
     return (
-        <section className="p-3 p-md-4 p-xl-5">
+        <section className="min-vh-100 d-flex align-items-center justify-content-center p-3 p-md-4 p-xl-5 bg-light">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                        <div className="card border border-light-subtle rounded-4">
+
+                        <div className="card border-0 shadow-lg rounded-4 bg-white">
+
                             <div className="card-body p-3 p-md-4 p-xl-5">
-                                <div className="row">
-                                    <div className="col-12">
-                                        <div className="mt-2 mb-3">
-                                            <h4 className="text-center">Login</h4>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <h4 className="text-center mb-4 fw-bold">Login</h4>
+
                                 <form>
-                                    <div className="row gy-3 overflow-hidden">
+                                    <div className="row gy-3">
+
                                         <div className="col-12">
-                                            <div className="form-floating ">
+                                            <div className="form-floating">
                                                 <input
                                                     type="email"
                                                     className="form-control"
-                                                    name="email"
                                                     id="email"
                                                     placeholder="name@example.com"
                                                 />
-                                                <label htmlFor="email" className="form-label">Email</label>
+                                                <label htmlFor="email">Email</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="form-floating ">
+                                            <div className="form-floating">
                                                 <input
                                                     type="password"
                                                     className="form-control"
-                                                    name="password"
                                                     id="password"
                                                     placeholder="Password"
                                                 />
-                                                <label htmlFor="password" className="form-label">Password</label>
+                                                <label htmlFor="password">Password</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="d-grid">
-                                                <button className="btn bsb-btn-xl btn-primary py-3 bg-success" type="submit">
-                                                    Log In Now
-                                                </button>
-                                            </div>
+                                            <button className="btn btn-success w-100 py-3 fw-semibold">
+                                                Log In Now
+                                            </button>
                                         </div>
+
                                     </div>
                                 </form>
-                                <div className="row">
-                                    <div className="col-12">
-                                        <hr className="border-secondary-subtle" />
-                                        <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <Link to="/signup" className="link-secondary text-decoration-none text-center">Create new account</Link>
-                                        </div>
-                                    </div>
+
+                                <hr className="my-4" />
+
+                                <div className="text-center">
+                                    <Link to="/signup" className="text-decoration-none text-dark">
+                                        Create new account
+                                    </Link>
                                 </div>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
