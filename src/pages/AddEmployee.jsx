@@ -1,10 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import Sidebar from "../layouts/Sidebar";
 import ProfileImage from '../assets/images/profileImg.jpg';
-import { Link } from "react-router";
 
 const AddEmployee = () => {
-
     const [employee, setEmployee] = useState({
         name: '',
         post: '',
@@ -32,6 +31,7 @@ const AddEmployee = () => {
     return (
         <div className="container">
             <div className="row my-5">
+
                 <Sidebar ProfileImage={ProfileImage} />
 
                 <div className="col-md-9">

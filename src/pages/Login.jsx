@@ -1,10 +1,17 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
+
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const { login, error, success } = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // your login logic
+        login({ error, success, email, password });
     };
 
     return (
@@ -12,36 +19,36 @@ const Login = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-
                         <div className="card border-0 shadow-lg rounded-4 bg-white">
-
                             <div className="card-body p-3 p-md-4 p-xl-5">
-
                                 <h4 className="text-center mb-4 fw-bold">Login</h4>
-
-                                <form>
+                                <form onSubmit={handleLogin}>
                                     <div className="row gy-3">
+                                        {success && (
+                                            <div className="col-12">
+                                                <div class="alert alert-success text-center" role="alert">
+                                                    {success}
+                                                </div>
+                                            </div>
+                                        )}
 
+                                        {error && (
+                                            <div className="col-12">
+                                                <div className="alert alert-danger text-center" role="alert">
+                                                    {error}
+                                                </div>
+                                            </div>
+                                        )}
                                         <div className="col-12">
                                             <div className="form-floating">
-                                                <input
-                                                    type="email"
-                                                    className="form-control"
-                                                    id="email"
-                                                    placeholder="name@example.com"
-                                                />
+                                                <input type="email" className="form-control" id="email" placeholder="name@example.com" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
                                                 <label htmlFor="email">Email</label>
                                             </div>
                                         </div>
 
                                         <div className="col-12">
                                             <div className="form-floating">
-                                                <input
-                                                    type="password"
-                                                    className="form-control"
-                                                    id="password"
-                                                    placeholder="Password"
-                                                />
+                                                <input type="password" className="form-control" id="password" placeholder="Password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                                 <label htmlFor="password">Password</label>
                                             </div>
                                         </div>

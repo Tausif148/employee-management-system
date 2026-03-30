@@ -1,7 +1,7 @@
 
 // Signup authentication 
-export const userSignup = ({ username, email, password }) => {
-    if (!username || !email || !password) {
+export const userSignup = ({ name, email, password, confirmPassword }) => {
+    if (!name || !email || !password || !confirmPassword) {
         return { success: false, message: "All fields are required" };
     }
 
@@ -13,7 +13,7 @@ export const userSignup = ({ username, email, password }) => {
         return { success: false, message: "Email already registered" };
     }
 
-    users.push({ username, email, password });
+    users.push({ name, email, password, confirmPassword });
     // Converts the array into a string because localStorage only stores strings.
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -45,9 +45,5 @@ export const userLogin = ({ email, password }) => {
     // store logged user
     localStorage.setItem("loggedUser", JSON.stringify(isExist));
 
-    return {
-        success: true,
-        message: "Login successful",
-        user: isExist
-    };
+    return { success: true, message: "Login successful", user: isExist };
 };

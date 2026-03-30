@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
 
 const Register = () => {
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const { signup, error, success } = useContext(AuthContext);
+
     const handleSignup = (e) => {
         e.preventDefault();
         // console.log("Signup form submitted with:", { name, email, password, confirmPassword });  // cgecking if form data is captured correctly
-
+        signup({ error, success, name, email, password, confirmPassword });
     };
 
     return (
@@ -24,15 +26,21 @@ const Register = () => {
                                 <h4 className="text-center mb-4 fw-bold">Signup</h4>
                                 <form onSubmit={handleSignup} >
                                     <div className="row gy-3">
-                                        <div className="col-12">
-                                            <div class="alert alert-danger text-center" role="alert">
-                                                All fields are required.
+                                        {success && (
+                                            <div className="col-12">
+                                                <div class="alert alert-success text-center" role="alert">
+                                                    {success}
+                                                </div>
                                             </div>
-                                            <div class="alert alert-success text-center" role="alert">
-                                                Signup successful!
-                                            </div>
-                                        </div>
+                                        )}
 
+                                        {error && (
+                                            <div className="col-12">
+                                                <div className="alert alert-danger text-center" role="alert">
+                                                    {error}
+                                                </div>
+                                            </div>
+                                        )}
                                         <div className="col-12">
                                             <div className="form-floating">
                                                 <input type="text" className="form-control" id="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />

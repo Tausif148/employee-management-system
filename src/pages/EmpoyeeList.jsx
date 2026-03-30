@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router";
 import ProfileImage from '../assets/images/profileImg.jpg';
 import EmployeeDetails from '../component/EmployeeDetails';
-import { Link } from "react-router";
+
+import { AuthContext } from '../context/AuthProvider';
 
 const EmployeeList = () => {
 
@@ -34,6 +36,16 @@ const EmployeeList = () => {
         emp.post.toLowerCase().includes(searchTerm.toLowerCase()) ||
         emp.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const { user, logout } = useContext(AuthContext);
+    // const navigate = useNavigate();
+
+    function handleLogout(e) {
+        e.preventDefault();
+
+        logout();
+        navigate("/Login-signup-react");
+    }
 
     return (
         <div className="container mt-3 pb-5">
