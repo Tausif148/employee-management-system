@@ -22,21 +22,21 @@ const router = createBrowserRouter([
                 element: <AddEmployee />,
             },
             {
-                path: "/profile",
+                path: "/admin/profile",
                 element: <Profile />,
             },
             {
-                path: "/changepassword",
+                path: "/admin/changepassword",
                 element: <ChangePassword />,
             }
         ]
     },
     {
-        path: "/signup",
+        path: "/admin/signup",
         element: <Register />,
     },
     {
-        path: "/login",
+        path: "/admin/login",
         element: <Login />,
     },
     {

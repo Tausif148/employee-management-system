@@ -80,7 +80,7 @@ const Register = () => {
                                 <hr className="my-4" />
 
                                 <div className="text-center">
-                                    <Link to="/login" className="text-decoration-none text-dark">
+                                    <Link to="/admin/login" className="text-decoration-none text-dark">
                                         Already have an account?
                                     </Link>
                                 </div>

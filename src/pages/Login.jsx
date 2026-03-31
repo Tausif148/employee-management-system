@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 
 
@@ -8,10 +8,15 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const { login, error, success } = useContext(AuthContext);
+    const nevigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        login({ error, success, email, password });
+        const result = login({ email, password });
+
+        if (result) {
+            nevigate("/admin/profile");
+        }
     };
 
     return (
@@ -26,7 +31,7 @@ const Login = () => {
                                     <div className="row gy-3">
                                         {success && (
                                             <div className="col-12">
-                                                <div class="alert alert-success text-center" role="alert">
+                                                <div className="alert alert-success text-center" role="alert">
                                                     {success}
                                                 </div>
                                             </div>
@@ -65,7 +70,7 @@ const Login = () => {
                                 <hr className="my-4" />
 
                                 <div className="text-center">
-                                    <Link to="/signup" className="text-decoration-none text-dark">
+                                    <Link to="/admin/signup" className="text-decoration-none text-dark">
                                         Create new account
                                     </Link>
                                 </div>

@@ -1,44 +1,89 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 const Sidebar = ({ ProfileImage }) => {
     return (
 
-        <aside className="col-md-3 " >
-            <div className="card border-0 shadow-lg">
-                <div className="card-header bg-success text-white">
-                    Welcome, John Doe
-                </div>
-                <div className="card-body">
-                    <div className="text-center mb-3">
-                        <img src={ProfileImage} className="img-fluid rounded-circle" alt="Luna John" />
-                    </div>
-                    <div className="h5 text-center">
-                        <strong>John Doe</strong>
-                        <p className="h6 mt-2 text-black">Software developer</p>
-                    </div>
-                </div>
-            </div>
-            <div className="card border-0 shadow-lg mt-3">
-                <div className="card-header bg-success text-white">
-                    Navigation
-                </div>
-                <div className="card-body sidebar">
-                    <ul className="nav flex-column">
-                        <li className="nav-item">
-                            <Link to="/profile">Profile</Link>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#">My Task</a>
+        <aside className="col-md-3">
+            <div className="card border-0 shadow-sm rounded-4 p-3">
 
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/changepassword">Change Password</Link>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#">Logout</a>
-                        </li>
-                    </ul>
+                {/* Profile Section */}
+                <div className="text-center mt-4 mb-4">
+                    <img
+                        src={ProfileImage}
+                        className="rounded-circle mb-2"
+                        alt="User"
+                        style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                    />
+                    <h6 className="mb-0 fw-semibold">Tausif Ahmad</h6>
+                    <small className="text-muted">Admin</small>
                 </div>
+
+                {/* Navigation */}
+                <ul className="nav flex-column gap-2">
+
+                    <li>
+                        <NavLink
+                            to="/admin/profile"
+                            className={({ isActive }) =>
+                                `nav-link rounded px-3 py-2 ${isActive
+                                    ? "bg-success text-white"
+                                    : "text-dark"
+                                }`
+                            }
+                        >
+                            <i className="fa fa-user me-2"></i> Profile
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/addemployee"
+                            className={({ isActive }) =>
+                                `nav-link rounded px-3 py-2 ${isActive
+                                    ? "bg-success text-white"
+                                    : "text-dark"
+                                }`
+                            }
+                        >
+                            <i className="fa fa-plus me-2"></i> Add Employees
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                `nav-link rounded px-3 py-2 ${isActive
+                                    ? "bg-success text-white"
+                                    : "text-dark"
+                                }`
+                            }
+                        >
+                            <i className="fa fa-users me-2"></i> Employees List
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/admin/changepassword"
+                            className={({ isActive }) =>
+                                `nav-link rounded px-3 py-2 ${isActive
+                                    ? "bg-success text-white"
+                                    : "text-dark"
+                                }`
+                            }
+                        >
+                            <i className="fa fa-lock me-2"></i> Change Password
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <a href="#" className="nav-link text-danger rounded px-3 py-2">
+                            <i className="fa fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li>
+
+                </ul>
             </div>
         </aside>
 

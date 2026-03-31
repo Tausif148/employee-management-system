@@ -92,7 +92,7 @@ const AddEmployee = () => {
                                 </div>
 
                                 {/* Image */}
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
                                     <label className="form-label">Profile Image</label>
                                     <input
                                         type="file"
@@ -100,7 +100,7 @@ const AddEmployee = () => {
                                         className="form-control"
                                         onChange={handleChange}
                                     />
-                                </div>
+                                </div> */}
 
                                 {/* Status */}
                                 <div className="mb-3">

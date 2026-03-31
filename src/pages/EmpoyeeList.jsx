@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, Navigate } from "react-router";
 import ProfileImage from '../assets/images/profileImg.jpg';
+import Sidebar from "../layouts/Sidebar";
 import EmployeeDetails from '../component/EmployeeDetails';
 
 import { AuthContext } from '../context/AuthProvider';
@@ -14,19 +15,108 @@ const EmployeeList = () => {
             id: '1',
             img: ProfileImage,
             name: 'Tausif Ahmad',
-            post: 'Software developer',
+            post: 'Software Developer',
             email: 'sheikhtousif148@gmail.com',
             phone: '8793194591',
             status: 'Active'
-
         },
         {
             id: '2',
             img: ProfileImage,
             name: 'Divyani Kokate',
-            post: 'Web developer',
+            post: 'Web Developer',
             email: 'divyanikokate1999@gmail.com',
             phone: '9876543210',
+            status: 'Inactive'
+        },
+        {
+            id: '3',
+            img: 'https://dummyjson.com/icon/sophiab/128',
+            name: 'Sophia Brown',
+            post: 'Accountant',
+            email: 'sophia.brown@x.dummyjson.com',
+            phone: '+81 210-652-2785',
+            status: 'Active'
+        },
+        {
+            id: '4',
+            img: 'https://dummyjson.com/icon/jamesd/128',
+            name: 'James Davis',
+            post: 'Research Analyst',
+            email: 'james.davis@x.dummyjson.com',
+            phone: '+49 614-958-9364',
+            status: 'Inactive'
+        },
+        {
+            id: '5',
+            img: 'https://dummyjson.com/icon/emmaj/128',
+            name: 'Emma Miller',
+            post: 'QA Engineer',
+            email: 'emma.miller@x.dummyjson.com',
+            phone: '+91 759-776-1614',
+            status: 'Active'
+        },
+        {
+            id: '6',
+            img: 'https://dummyjson.com/icon/oliviaw/128',
+            name: 'Olivia Wilson',
+            post: 'Research Analyst',
+            email: 'olivia.wilson@x.dummyjson.com',
+            phone: '+91 607-295-6448',
+            status: 'Active'
+        },
+        {
+            id: '7',
+            img: 'https://dummyjson.com/icon/alexanderj/128',
+            name: 'Alexander Jones',
+            post: 'Web Developer',
+            email: 'alexander.jones@x.dummyjson.com',
+            phone: '+61 260-824-4986',
+            status: 'Inactive'
+        },
+        {
+            id: '8',
+            img: 'https://dummyjson.com/icon/avat/128',
+            name: 'Ava Taylor',
+            post: 'CEO',
+            email: 'ava.taylor@x.dummyjson.com',
+            phone: '+1 458-853-7877',
+            status: 'Active'
+        },
+        {
+            id: '9',
+            img: 'https://dummyjson.com/icon/ethanm/128',
+            name: 'Ethan Martinez',
+            post: 'Legal Counsel',
+            email: 'ethan.martinez@x.dummyjson.com',
+            phone: '+92 933-608-5081',
+            status: 'Inactive'
+        },
+        {
+            id: '10',
+            img: 'https://dummyjson.com/icon/isabellad/128',
+            name: 'Isabella Anderson',
+            post: 'CFO',
+            email: 'isabella.anderson@x.dummyjson.com',
+            phone: '+49 770-658-4885',
+            status: 'Active'
+        },
+        {
+            id: '11',
+            img: 'https://dummyjson.com/icon/michaelw/128',
+            name: 'Michael White',
+            post: 'Frontend Developer',
+            email: 'michael.white@x.dummyjson.com',
+            phone: '+44 770-123-4567',
+            status: 'Active'
+        },
+        {
+            id: '12',
+            img: 'https://dummyjson.com/icon/charlotteh/128',
+            name: 'Charlotte Harris',
+            post: 'UI/UX Designer',
+            email: 'charlotte.harris@x.dummyjson.com',
+            phone: '+61 490-567-890',
             status: 'Inactive'
         }
     ]);
@@ -50,15 +140,16 @@ const EmployeeList = () => {
     return (
         <div className="container mt-3 pb-5">
             <div className="row mt-5">
-                <div className="col-md-12">
-                    <div className="d-flex justify-content-between">
+                <Sidebar ProfileImage={ProfileImage} />
+
+                <div className="col-md-9">
+                    {/* <div className="d-flex justify-content-between">
                         <h2>Employee List</h2>
-                        {/* <button className="btn btn-primary bg-success">Add New</button> */}
                         <Link className="btn btn-primary bg-success d-flex align-items-center" to="/addemployee" >Add New</Link>
-                    </div>
+                    </div> */}
 
                     {/* SEARCH */}
-                    <div className="mt-4 mb-3">
+                    <div className="mb-3">
                         <div className="input-group input-group-lg shadow-sm">
                             <span className="input-group-text bg-success border-end-0">
                                 <i className="fa-solid fa-magnifying-glass text-white"></i>

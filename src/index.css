@@ -14,6 +14,7 @@
 
 body {
     font-family: var(--body-font-family);
+  background-color: #f5f7fb;
 }
 
 .header {
@@ -81,6 +82,7 @@ body {
     text-decoration: none;
     font-size: 18px;
     color: var(--btn-bg-dark);
+    padding: 0;
 }
 
 .sidebar .nav li {
@@ -101,4 +103,9 @@ body {
     font-size: 16px;
     font-family: var(--btn-font-family);
     font-weight: 500;
+}
+
+aside {
+  position: sticky;
+  top: 80px;
 }
