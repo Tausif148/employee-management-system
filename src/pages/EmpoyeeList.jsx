@@ -1,10 +1,7 @@
-import { useState, useContext } from "react";
-import { Link, Navigate } from "react-router";
+import { useState } from "react";
 import ProfileImage from '../assets/images/profileImg.jpg';
 import Sidebar from "../layouts/Sidebar";
 import EmployeeDetails from '../component/EmployeeDetails';
-
-import { AuthContext } from '../context/AuthProvider';
 
 const EmployeeList = () => {
 
@@ -127,16 +124,6 @@ const EmployeeList = () => {
         emp.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const { user, logout } = useContext(AuthContext);
-    // const navigate = useNavigate();
-
-    function handleLogout(e) {
-        e.preventDefault();
-
-        logout();
-        navigate("/Login-signup-react");
-    }
-
     return (
         <div className="container mt-3 pb-5">
             <div className="row mt-5">
@@ -156,7 +143,7 @@ const EmployeeList = () => {
                             </span>
                             <input
                                 type="text"
-                                className="form-control form-control-lg shadow-none border"
+                                className="form-control form-control-lg shadow-none border fs-6"
                                 placeholder="Search employee..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}

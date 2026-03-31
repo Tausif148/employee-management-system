@@ -1,8 +1,21 @@
 import { NavLink } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import { AuthContext } from '../context/AuthProvider';
 
 const Sidebar = ({ ProfileImage }) => {
-    return (
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
+
+    function handleLogout(e) {
+        e.preventDefault();
+        logout();
+        navigate("/admin/login");
+    }
+
+    return (
         <aside className="col-md-3">
             <div className="card border-0 shadow-sm rounded-4 p-3">
 
@@ -14,7 +27,7 @@ const Sidebar = ({ ProfileImage }) => {
                         alt="User"
                         style={{ width: "100px", height: "100px", objectFit: "cover" }}
                     />
-                    <h6 className="mb-0 fw-semibold">Tausif Ahmad</h6>
+                    <h6 className="mb-0 fw-semibold">{user?.name || "Guest"}</h6>
                     <small className="text-muted">Admin</small>
                 </div>
 
@@ -78,7 +91,7 @@ const Sidebar = ({ ProfileImage }) => {
                     </li>
 
                     <li>
-                        <a href="#" className="nav-link text-danger rounded px-3 py-2">
+                        <a onClick={handleLogout} href="#" className="nav-link text-danger rounded px-3 py-2">
                             <i className="fa fa-sign-out-alt me-2"></i> Logout
                         </a>
                     </li>

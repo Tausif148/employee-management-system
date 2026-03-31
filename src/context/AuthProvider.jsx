@@ -1,9 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { userSignup, userLogin } from '../api/index';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("loggedUser");
+
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
     const [user, setUser] = useState(null);
 
     const [error, setError] = useState('');
@@ -39,9 +48,12 @@ const AuthProvider = ({ children }) => {
         const result = userLogin({ email, password });
 
         if (result.success) {
-            setUser(result.user);
             setError('');
             setSuccess(result.message);
+
+            setUser(result.user);
+            // ✅ ADD THIS
+            localStorage.setItem("loggedUser", JSON.stringify(result.user));
 
             setTimeout(() => {
                 setSuccess("");

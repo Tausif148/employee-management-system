@@ -60,7 +60,7 @@ const Login = () => {
 
                                         <div className="col-12">
                                             <button className="btn btn-success w-100 py-3 fw-semibold">
-                                                Log In Now
+                                                Login Now
                                             </button>
                                         </div>
 

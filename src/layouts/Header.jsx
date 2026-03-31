@@ -1,7 +1,20 @@
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import { AuthContext } from '../context/AuthProvider';
 
 const Header = () => {
 
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
+    function handleLogout(e) {
+        e.preventDefault();
+        logout();
+        navigate("/admin/login");
+    }
 
     return (
         <header className="shadow-sm  bg-success">
@@ -17,7 +30,7 @@ const Header = () => {
                     <div className="d-flex align-items-center text-white gap-3">
 
                         <span className="small">
-                            Welcome, <strong>Tausif Ahmad</strong>
+                            Welcome, <strong>{user?.name || "Guest"}</strong>
                         </span>
 
                         <NavLink
@@ -27,12 +40,11 @@ const Header = () => {
                             Profile
                         </NavLink>
 
-                        <NavLink
-                            to="/login"
+                        <a onClick={handleLogout} href="#"
                             className="text-white text-decoration-none small"
                         >
                             Logout
-                        </NavLink>
+                        </a>
 
                     </div>
                 </div>
