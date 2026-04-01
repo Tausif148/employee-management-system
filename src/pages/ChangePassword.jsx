@@ -53,8 +53,8 @@ const ChangePassword = () => {
                                 />
                             </div>
 
-                            <button className="btn btn-primary bg-success mt-2">
-                                Update
+                            <button className="btn btn-outline-success mt-2">
+                                Chnage Password
                             </button>
                         </div>
                     </div>

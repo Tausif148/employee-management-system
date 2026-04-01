@@ -115,10 +115,10 @@ const AddEmployee = () => {
                                     </select>
                                 </div>
 
-                                <button className="btn btn-success" style={{ marginRight: '10px' }}>
+                                <button className="btn btn-outline-primary" style={{ marginRight: '10px' }}>
                                     Create Employee
                                 </button>
-                                <Link className="ml-3 btn btn-success" to='/'>Empoyee List</Link>
+                                <Link className="ml-3 btn btn-outline-success" to='/'>Empoyee List</Link>
                             </form>
                         </div>
                     </div>

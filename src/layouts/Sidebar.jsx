@@ -64,7 +64,7 @@ const Sidebar = ({ ProfileImage }) => {
 
                     <li>
                         <NavLink
-                            to="/employee-management-system/"
+                            to="/"
                             className={({ isActive }) =>
                                 `nav-link rounded px-3 py-2 ${isActive
                                     ? "bg-success text-white"
