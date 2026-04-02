@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
 import App from "../layouts/App.jsx";
 import Register from "../pages/Register";
@@ -10,7 +10,7 @@ import Profile from "../pages/Profile.jsx";
 import PageNotFound from "../pages/PageNotFound.jsx";
 import AuthGuard from "../component/AuthGuard.jsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     // Public Routes
     {
         path: "/admin/login",
@@ -20,24 +20,25 @@ const router = createBrowserRouter([
         path: "/admin/signup",
         element: <Register />,
     },
+
+    // Main Layout
     {
         path: "/",
         element: <App />,
         children: [
-            // Protected Routes
             {
                 element: <AuthGuard />,
                 children: [
                     {
-                        path: "/admin/profile",
+                        path: "admin/profile",
                         element: <Profile />,
                     },
                     {
-                        path: "/admin/changepassword",
+                        path: "admin/changepassword",
                         element: <ChangePassword />,
                     },
                     {
-                        path: "",
+                        path: "",   // default route
                         element: <EmployeeList />,
                     },
                     {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
         ],
     },
 
-    //  404
+    // 404
     {
         path: "*",
         element: <PageNotFound />,
