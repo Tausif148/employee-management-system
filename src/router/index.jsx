@@ -3,12 +3,13 @@ import { createHashRouter } from "react-router-dom";
 import App from "../layouts/App.jsx";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import AuthGuard from "../component/AuthGuard.jsx";
 import EmployeeList from "../pages/EmployeeList.jsx";
-import AddEmployee from "../pages/AddEmployee.jsx";
 import ChangePassword from "../pages/ChangePassword.jsx";
 import Profile from "../pages/Profile.jsx";
+import AddEmployee from "../pages/AddEmployee.jsx";
+import EditEmployee from "../pages/EditEmployee.jsx";
 import PageNotFound from "../pages/PageNotFound.jsx";
-import AuthGuard from "../component/AuthGuard.jsx";
 
 const router = createHashRouter([
     // Public Routes
@@ -44,6 +45,10 @@ const router = createHashRouter([
                     {
                         path: "addemployee",
                         element: <AddEmployee />,
+                    },
+                    {
+                        path: "editemployee/:id",
+                        element: <EditEmployee />,
                     }
                 ],
             },

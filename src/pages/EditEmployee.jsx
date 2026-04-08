@@ -1,18 +1,17 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router";
+
 import Sidebar from "../layouts/Sidebar";
 import ProfileImage from '../assets/images/profileImg.jpg';
-import { DataContext } from "../context/DataProvider";
+// import { DataContext } from "../context/DataProvider";
 
 import { ToastContainer, toast } from 'react-toastify';
 
-const AddEmployee = () => {
+const EditEmployee = () => {
     const [employee, setEmployee] = useState({
         name: "",
         post: "",
         email: "",
         phone: "",
-        status: "Active"
+        status: "active"
     });
 
     const handleChange = (e) => {
@@ -24,13 +23,13 @@ const AddEmployee = () => {
         }));
     };
 
-    const { handleAddUser } = useContext(DataContext);
+    // const { handleEditUser } = useContext(DataContext);
 
     const handleAdd = (e) => {
         e.preventDefault();
         // console.log("Console from form");
         // console.log(employee); 
-        handleAddUser(employee);//  send to backend
+        // handleAddUser(employee);//  send to backend
 
     };
 
@@ -44,11 +43,11 @@ const AddEmployee = () => {
                 <div className="col-md-9">
                     <div className="card border-0 shadow">
                         <div className="card-header bg-success text-white">
-                            Add Employee
+                            Edit Employee
                         </div>
 
                         <div className="card-body">
-                            <form onSubmit={handleAdd}>
+                            <form onSubmit={handleSubmit}>
 
                                 {/* Name */}
                                 <div className="mb-3">
@@ -117,13 +116,13 @@ const AddEmployee = () => {
                                         className="form-control"
                                         onChange={handleChange}
                                     >
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
                                     </select>
                                 </div>
 
                                 <button className="btn btn-outline-success" style={{ marginRight: '10px' }}>
-                                    Add Employee
+                                    Edit Employee
                                 </button>
                             </form>
                         </div>
@@ -135,4 +134,4 @@ const AddEmployee = () => {
     );
 };
 
-export default AddEmployee;
+export default EditEmployee;

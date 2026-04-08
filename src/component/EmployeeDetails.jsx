@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router";
+
 const EmployeeDetails = ({ img, name, email, post, phone, status }) => {
+
+    // const nevigate = useNavigate();
+    // nevigate(+'')
+
     return (
         <div className="col-md-4 col-lg-3 mb-4">
             <div className="card border-0 shadow-sm h-100 text-center position-relative">

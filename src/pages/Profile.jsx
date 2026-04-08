@@ -48,9 +48,6 @@ const Profile = () => {
                                 </div>
 
                                 <div className="text-start d-flex gap-2">
-                                    <button className="btn btn-outline-primary px-4 mr-5">
-                                        Edit Profile
-                                    </button>
                                     <button className="btn btn-outline-success px-4">
                                         Update Profile
                                     </button>

@@ -14,7 +14,7 @@
 
 body {
     font-family: var(--body-font-family);
-  background-color: #f5f7fb;
+    background-color: #f5f7fb;
 }
 
 .header {
@@ -106,6 +106,7 @@ body {
 }
 
 aside {
-  position: sticky;
-  top: 80px;
+    position: sticky;
+    top: 80px;
 }
+
