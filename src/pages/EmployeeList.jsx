@@ -41,8 +41,8 @@ const EmployeeList = () => {
                     <div className="row mt-4">
                         {filteredEmployees.length > 0 ? (
                             filteredEmployees.map(emp => (
-                                <EmployeeDetails
-                                    key={emp.id}
+                                <EmployeeDetails        key={emp.id}
+                                    id={emp.id}
                                     name={emp.name}
                                     post={emp.post}
                                     email={emp.email}

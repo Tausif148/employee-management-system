@@ -1,9 +1,10 @@
+import { ToastContainer, toast } from 'react-toastify';
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import Sidebar from "../layouts/Sidebar";
 import ProfileImage from '../assets/images/profileImg.jpg';
-// import { DataContext } from "../context/DataProvider";
-
-import { ToastContainer, toast } from 'react-toastify';
+import { DataContext } from "../context/DataProvider";
 
 const EditEmployee = () => {
     const [employee, setEmployee] = useState({
@@ -14,6 +15,19 @@ const EditEmployee = () => {
         status: "active"
     });
 
+    const { id } = useParams();
+    // console.log(id);
+
+    useEffect(() => {
+        const users = JSON.parse(localStorage.getItem('usersList')) || [];
+        const singleEmployee = users.find((user) => user.id == id);
+
+        if (singleEmployee) {
+            setEmployee(singleEmployee);
+        }
+    }, [id]);
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -23,16 +37,18 @@ const EditEmployee = () => {
         }));
     };
 
-    // const { handleEditUser } = useContext(DataContext);
+    const { handleUpdateUser } = useContext(DataContext);
+    const navigate = useNavigate();
 
-    const handleAdd = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
-        // console.log("Console from form");
-        // console.log(employee); 
-        // handleAddUser(employee);//  send to backend
 
+        const result = handleUpdateUser(employee);
+
+        if (result) {
+            navigate("/");
+        }
     };
-
 
     return (
         <div className="container">
@@ -47,7 +63,7 @@ const EditEmployee = () => {
                         </div>
 
                         <div className="card-body">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleUpdate}>
 
                                 {/* Name */}
                                 <div className="mb-3">
@@ -55,6 +71,7 @@ const EditEmployee = () => {
                                     <input
                                         type="text"
                                         name="name"
+                                        value={employee.name}
                                         className="form-control"
                                         placeholder="Enter name"
                                         onChange={handleChange}
@@ -67,6 +84,7 @@ const EditEmployee = () => {
                                     <input
                                         type="text"
                                         name="post"
+                                        value={employee.post}
                                         className="form-control"
                                         placeholder="Enter position"
                                         onChange={handleChange}
@@ -79,6 +97,7 @@ const EditEmployee = () => {
                                     <input
                                         type="text"
                                         name="email"
+                                        value={employee.email}
                                         className="form-control"
                                         placeholder="Enter email"
                                         onChange={handleChange}
@@ -91,6 +110,7 @@ const EditEmployee = () => {
                                     <input
                                         type="text"
                                         name="phone"
+                                        value={employee.phone}
                                         className="form-control"
                                         placeholder="Enter phone number"
                                         onChange={handleChange}
@@ -114,6 +134,7 @@ const EditEmployee = () => {
                                     <select
                                         name="status"
                                         className="form-control"
+                                        value={employee.status || "active"}
                                         onChange={handleChange}
                                     >
                                         <option value="active">Active</option>
@@ -122,7 +143,7 @@ const EditEmployee = () => {
                                 </div>
 
                                 <button className="btn btn-outline-success" style={{ marginRight: '10px' }}>
-                                    Edit Employee
+                                    Update Employee
                                 </button>
                             </form>
                         </div>

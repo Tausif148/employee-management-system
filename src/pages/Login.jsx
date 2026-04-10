@@ -6,16 +6,16 @@ import { AuthContext } from "../context/AuthProvider";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const { login, error, success } = useContext(AuthContext);
-    const nevigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         const result = login({ email, password });
 
         if (result) {
-            nevigate("/admin/profile");
+            navigate("/admin/profile");
         }
     };
 

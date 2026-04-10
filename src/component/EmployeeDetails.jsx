@@ -1,9 +1,25 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { DataContext } from "../context/DataProvider";
 
-const EmployeeDetails = ({ img, name, email, post, phone, status }) => {
+const EmployeeDetails = ({ id, name, email, post, phone, status }) => {
+    const navigate = useNavigate();
 
-    // const nevigate = useNavigate();
-    // nevigate(+'')
+    const { handleDeleteUser } = useContext(DataContext);
+
+    const handleDelete = (id) => {
+        // alert(`Deleting user with ID: ${id}`);
+        const result = handleDeleteUser(id);
+
+        if (result) {
+            navigate("/addemployee");
+        }
+    };
+
+    const handleEdit = (id) => {
+        // alert(`Edit user with ID: ${id}`);
+        navigate('/editemployee/' + id)
+    }
 
     return (
         <div className="col-md-4 col-lg-3 mb-4">
@@ -59,10 +75,10 @@ const EmployeeDetails = ({ img, name, email, post, phone, status }) => {
 
                 {/* Footer */}
                 <div className="card-footer bg-white border-0 d-flex gap-2 p-3 pt-0">
-                    <button className="btn btn-sm btn-outline-primary w-50">
+                    <button className="btn btn-sm btn-outline-primary w-50" onClick={() => handleEdit(id)}>
                         Edit
                     </button>
-                    <button className="btn btn-sm btn-outline-danger w-50">
+                    <button onClick={() => handleDelete(id)} className="btn btn-sm btn-outline-danger w-50">
                         Delete
                     </button>
                 </div>

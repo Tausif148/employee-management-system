@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import Sidebar from "../layouts/Sidebar";
 import ProfileImage from '../assets/images/profileImg.jpg';
 import { DataContext } from "../context/DataProvider";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const AddEmployee = () => {
     const [employee, setEmployee] = useState({
@@ -15,6 +15,7 @@ const AddEmployee = () => {
         status: "Active"
     });
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -24,14 +25,19 @@ const AddEmployee = () => {
         }));
     };
 
+
     const { handleAddUser } = useContext(DataContext);
+    const navigate = useNavigate();
 
     const handleAdd = (e) => {
         e.preventDefault();
         // console.log("Console from form");
         // console.log(employee); 
-        handleAddUser(employee);//  send to backend
+        const result = handleAddUser(employee);//  send to backend
 
+        if (result) {
+            navigate("/");
+        }
     };
 
 
