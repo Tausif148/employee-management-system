@@ -19,7 +19,7 @@ const EditEmployee = () => {
     // console.log(id);
 
     useEffect(() => {
-        const users = JSON.parse(localStorage.getItem('usersList')) || [];
+        const users = JSON.parse(localStorage.getItem('employeeList')) || [];
         const singleEmployee = users.find((user) => user.id == id);
 
         if (singleEmployee) {

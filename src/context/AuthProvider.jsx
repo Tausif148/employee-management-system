@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("loggedUser");
+        const storedUser = localStorage.getItem("loggedAdmin");
 
         if (storedUser) {
             setUser(JSON.parse(storedUser));
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
 
             setUser(result.user);
             // ✅ ADD THIS
-            localStorage.setItem("loggedUser", JSON.stringify(result.user));
+            localStorage.setItem("loggedAdmin", JSON.stringify(result.user));
 
             setTimeout(() => {
                 setSuccess("");
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
     // Logout functionality
     const logout = () => {
-        localStorage.removeItem("loggedUser");
+        localStorage.removeItem("loggedAdmin");
         setUser(null);
     };
 

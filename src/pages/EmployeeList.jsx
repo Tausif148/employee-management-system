@@ -7,7 +7,7 @@ const EmployeeList = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const [employees, setEmployees] = useState(JSON.parse(localStorage.getItem('usersList')) || []);
+    const [employees, setEmployees] = useState(JSON.parse(localStorage.getItem('employeeList')) || []);
 
     const filteredEmployees = employees.filter(emp =>
         emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -41,7 +41,7 @@ const EmployeeList = () => {
                     <div className="row mt-4">
                         {filteredEmployees.length > 0 ? (
                             filteredEmployees.map(emp => (
-                                <EmployeeDetails        key={emp.id}
+                                <EmployeeDetails key={emp.id}
                                     id={emp.id}
                                     name={emp.name}
                                     post={emp.post}

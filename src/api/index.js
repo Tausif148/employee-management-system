@@ -5,17 +5,18 @@ export const userSignup = ({ name, email, password, confirmPassword }) => {
         return { success: false, message: "All fields are required" };
     }
 
-    let users = localStorage.getItem('users') || '[]';
-    users = JSON.parse(users);
-    const isExist = users.find(item => item.email === email);
+    let admins = localStorage.getItem('admins') || '[]';
+
+    admins = JSON.parse(admins);
+    const isExist = admins.find(item => item.email === email);
 
     if (isExist) {
         return { success: false, message: "Email already registered" };
     }
 
-    users.push({ name, email, password, confirmPassword });
+    admins.push({ name, email, password, confirmPassword });
     // Converts the array into a string because localStorage only stores strings.
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("admins", JSON.stringify(admins));
 
     return { success: true, message: "You have resitered successfully!" };
 };
@@ -28,16 +29,16 @@ export const userLogin = ({ email, password }) => {
         return { success: false, message: "All fields are required" };
     }
 
-    let users = localStorage.getItem("users");
-    if (!users) {
-        return { success: false, message: "No users found" };
+    let admins = localStorage.getItem("admins");
+    if (!admins) {
+        return { success: false, message: "No admin found" };
     }
 
-    users = JSON.parse(users);
+    admins = JSON.parse(admins);
 
-    const isExist = users.find(user => user.email === email);
+    const isExist = admins.find(user => user.email === email);
     if (!isExist) {
-        return { success: false, message: "User not found" };
+        return { success: false, message: "Admin not found" };
     }
     if (isExist.password !== password) {
         return { success: false, message: "Incorrect password" };
@@ -75,10 +76,10 @@ export const userList = (employee) => {
     }
 
     // Get existing data
-    let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+    let employeeList = JSON.parse(localStorage.getItem('employeeList')) || [];
 
     // Check duplicate (email OR name + phone)
-    const isExist = usersList.find(
+    const isExist = employeeList.find(
         item => item.email === email ||
             (item.name === name && item.phone === phone)
     );
@@ -88,7 +89,7 @@ export const userList = (employee) => {
     }
 
     // Add unique ID
-    const newId = `emp${usersList.length + 1}`;
+    const newId = `emp${employeeList.length + 1}`;
 
     const newEmployee = {
         id: newId,
@@ -100,9 +101,9 @@ export const userList = (employee) => {
     };
 
     // Save new employee
-    usersList.push(newEmployee);
+    employeeList.push(newEmployee);
 
-    localStorage.setItem("usersList", JSON.stringify(usersList));
+    localStorage.setItem("employeeList", JSON.stringify(employeeList));
 
     return { success: true, message: "You have added successfully!" };
 };
@@ -111,13 +112,13 @@ export const userList = (employee) => {
 // -------------------Deleting Employee-------------------------
 export const userDelete = (id) => {
 
-    let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+    let employeeList = JSON.parse(localStorage.getItem('employeeList')) || [];
 
     // Remove user with matching id
-    const updatedList = usersList.filter(item => item.id !== id);
+    const updatedList = employeeList.filter(item => item.id !== id);
 
     // Save updated list back to localStorage
-    localStorage.setItem('usersList', JSON.stringify(updatedList));
+    localStorage.setItem('employeeList', JSON.stringify(updatedList));
 
     return { success: true, message: "User deleted successfully" };
 };
@@ -126,13 +127,13 @@ export const userDelete = (id) => {
 
 // -------------------Updating Employee-------------------------
 export const userUpdate = (employee) => {
-    const users = JSON.parse(localStorage.getItem('usersList')) || [];
+    const users = JSON.parse(localStorage.getItem('employeeList')) || [];
 
     const updatedUsers = users.map((user) =>
         user.id == employee.id ? employee : user
     );
 
-    localStorage.setItem('usersList', JSON.stringify(updatedUsers));
+    localStorage.setItem('employeeList', JSON.stringify(updatedUsers));
 
     return {
         success: true,

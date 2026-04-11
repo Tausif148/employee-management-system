@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
 
 const AuthGuard = () => {
-  const user = localStorage.getItem("loggedUser");
+  const user = localStorage.getItem("loggedAdmin");
 
   // 🔐 Not logged in → redirect to login
   if (!user) {
