@@ -57,7 +57,7 @@ const Sidebar = () => {
                         }
                     >
                         <i className="fa fa-users me-2"></i>
-                        Add Employees New
+                        Employees List
                     </NavLink>
                 </li>
 
