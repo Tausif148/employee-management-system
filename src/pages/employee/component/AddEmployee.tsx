@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { supabase } from "src/services/supabaseClient";
-import { useEmployeeActions } from "../../../apiActions/useEmployeeActions";
+import { useEmployeeActions } from "src/apiActions/useEmployeeActions";
 import type { IEmployee } from "src/interface/useEmployeeTypes";
 import useEmployeeForm from "src/formic/useEmplyeeForm";
 
@@ -11,11 +11,7 @@ interface AddEmployeeProps {
   refetch?: () => void;
 }
 
-const AddEmployee = ({
-  employee,
-  closeModal,
-  refetch,
-}: AddEmployeeProps) => {
+const AddEmployee = ({ employee, closeModal, refetch }: AddEmployeeProps) => {
   const { tryAdd, tryUpdate } = useEmployeeActions();
 
   const isEdit = Boolean(employee);
@@ -65,9 +61,7 @@ const AddEmployee = ({
     } catch (error) {
       console.error(error);
       toast.error(
-        isEdit
-          ? "Failed to update employee"
-          : "Failed to add employee"
+        isEdit ? "Failed to update employee" : "Failed to add employee",
       );
     }
   };
@@ -104,9 +98,7 @@ const AddEmployee = ({
     setImageFile(null);
   }, [employee]);
 
-  const handleImageChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (!file) return;
@@ -118,7 +110,6 @@ const AddEmployee = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="row">
-
         {/* Name */}
         <div className="col-md-6 mb-3">
           <label className="form-label fw-semibold">
@@ -138,9 +129,7 @@ const AddEmployee = ({
           />
 
           {touched.name && errors.name && (
-            <div className="invalid-feedback">
-              {errors.name}
-            </div>
+            <div className="invalid-feedback">{errors.name}</div>
           )}
         </div>
 
@@ -163,9 +152,7 @@ const AddEmployee = ({
           />
 
           {touched.position && errors.position && (
-            <div className="invalid-feedback">
-              {errors.position}
-            </div>
+            <div className="invalid-feedback">{errors.position}</div>
           )}
         </div>
 
@@ -188,9 +175,7 @@ const AddEmployee = ({
           />
 
           {touched.email && errors.email && (
-            <div className="invalid-feedback">
-              {errors.email}
-            </div>
+            <div className="invalid-feedback">{errors.email}</div>
           )}
         </div>
 
@@ -213,17 +198,13 @@ const AddEmployee = ({
           />
 
           {touched.phone && errors.phone && (
-            <div className="invalid-feedback">
-              {errors.phone}
-            </div>
+            <div className="invalid-feedback">{errors.phone}</div>
           )}
         </div>
 
         {/* Image */}
         <div className="col-md-12 mb-3">
-          <label className="form-label fw-semibold">
-            Profile Image
-          </label>
+          <label className="form-label fw-semibold">Profile Image</label>
 
           <input
             type="file"
@@ -255,9 +236,7 @@ const AddEmployee = ({
           <select
             name="status"
             className={`form-select ${
-              touched.status && errors.status
-                ? "is-invalid"
-                : ""
+              touched.status && errors.status ? "is-invalid" : ""
             }`}
             value={values.status}
             onChange={handleChange}
@@ -268,9 +247,7 @@ const AddEmployee = ({
           </select>
 
           {touched.status && errors.status && (
-            <div className="invalid-feedback">
-              {errors.status}
-            </div>
+            <div className="invalid-feedback">{errors.status}</div>
           )}
         </div>
 

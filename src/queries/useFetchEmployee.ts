@@ -2,20 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from 'src/services/supabaseClient';
 import { QueryKeys } from 'src/constants/QueryKeys';
 import { EMPLOYEE_API } from 'src/services/endpoint';
-
-export interface Employee {
-  id: number;
-  name: string;
-  post: string;
-  email: string;
-  phone: string;
-  status: string;
-  image?: string;
-  created_at?: string;
-}
+import type { IEmployee } from 'src/interface/useEmployeeTypes';
 
 export const useFetchEmployees = () => {
-  return useQuery<Employee[]>({
+  return useQuery<IEmployee[]>({
     queryKey: [QueryKeys.employees],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -25,7 +15,7 @@ export const useFetchEmployees = () => {
 
       if (error) throw error;
 
-      return data as Employee[];
+      return data as IEmployee[];
     },
   });
 };

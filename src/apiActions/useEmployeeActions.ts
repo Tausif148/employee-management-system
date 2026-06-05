@@ -2,15 +2,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { supabase } from 'src/services/supabaseClient';
 import { QueryKeys } from 'src/constants/QueryKeys';
 import { EMPLOYEE_API } from 'src/services/endpoint';
+import type { IEmployee } from "src/interface/useEmployeeTypes";
 
-interface EmployeeBody {
-  name: string;
-  post: string;
-  email: string;
-  phone: string;
-  status: string;
-  image?: string;
-}
 
 export const useEmployeeActions = () => {
   const queryClient = useQueryClient();
@@ -18,7 +11,7 @@ export const useEmployeeActions = () => {
   const invalidate = () =>
     queryClient.invalidateQueries({ queryKey: [QueryKeys.employees] });
 
-  const tryAdd = async (body: EmployeeBody) => {
+  const tryAdd = async (body: IEmployee) => {
     const { data, error } = await supabase
       .from(EMPLOYEE_API.CREATE_EMPLOYEE)
       .insert([body])
@@ -30,7 +23,7 @@ export const useEmployeeActions = () => {
     return data;
   };
 
-  const tryUpdate = async (id: number, body: Partial<EmployeeBody>) => {
+  const tryUpdate = async (id: number, body: Partial<IEmployee>) => {
     const { data, error } = await supabase
       .from(EMPLOYEE_API.UPDATE_EMPLOYEE)
       .update(body)

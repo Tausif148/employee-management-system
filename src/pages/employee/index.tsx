@@ -21,7 +21,7 @@ const Index = () => {
     useState<IEmployee | null>(null);
 
   const filteredEmployees = (
-    employeesList as IEmployee[]
+    employeesList
   ).filter((employee) =>
     employee.name
       ?.toLowerCase()
