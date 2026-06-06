@@ -8,10 +8,11 @@ import type { IEmployee } from "src/interface/useEmployeeTypes";
 
 
 const Index = () => {
-  const {
-    data: employeesList = [],
-    refetch,
-  } = useFetchEmployees();
+const {
+  data: employeesList = [],
+  refetch,
+  isLoading,
+} = useFetchEmployees()
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -94,6 +95,7 @@ const Index = () => {
           <div className="row">
             <EmployeeTable
               data={filteredEmployees}
+                loading={isLoading}
               onEdit={handleEditEmployee}
               refetch={refetch}
             />

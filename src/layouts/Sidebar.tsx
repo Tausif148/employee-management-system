@@ -22,6 +22,9 @@ const Sidebar = () => {
         navigate("/admin/login");
     };
 
+      const auth = useContext(AuthContext);
+    
+
     return (
         <div className="card border-0 shadow-sm rounded-4 p-3">
             {/* Profile Section */}
@@ -49,6 +52,8 @@ const Sidebar = () => {
                 <li>
                     <NavLink
                         to="/"
+                                            onClick={() => auth?.clearMessages()}
+
                         className={({ isActive }) =>
                             `nav-link rounded px-3 py-2 ${isActive
                                 ? "bg-success text-white"
@@ -64,6 +69,8 @@ const Sidebar = () => {
                 <li>
                     <NavLink
                         to="/admin/profile"
+                                            onClick={() => auth?.clearMessages()}
+
                         className={({ isActive }) =>
                             `nav-link rounded px-3 py-2 ${isActive
                                 ? "bg-success text-white"
@@ -79,6 +86,8 @@ const Sidebar = () => {
                 <li>
                     <NavLink
                         to="/admin/changepassword"
+                                            onClick={() => auth?.clearMessages()}
+
                         className={({ isActive }) =>
                             `nav-link rounded px-3 py-2 ${isActive
                                 ? "bg-success text-white"

@@ -6,12 +6,13 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 interface EmployeeTableProps {
-  data: IEmployee[] | [];
+  data: IEmployee[];
+  loading: boolean;
   onEdit: (employee: IEmployee) => void;
   refetch?: () => void;
 }
 
-const EmployeeTable = ({ data, onEdit, refetch }: EmployeeTableProps) => {
+const EmployeeTable = ({ data, onEdit, refetch, loading }: EmployeeTableProps) => {
   const { tryDelete } = useEmployeeActions();
 
   const handleDelete = async (id: IEmployee["id"]) => {
@@ -38,13 +39,25 @@ const EmployeeTable = ({ data, onEdit, refetch }: EmployeeTableProps) => {
     }
   };
 
-  if (!data?.length) {
-    return (
-      <div className="col-12">
-        <div className="alert alert-info text-center">No Employees Found</div>
+if (loading) {
+  return (
+    <div className="col-12">
+      <div className="alert alert-primary text-center">
+        Loading Employees...
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+if (data.length === 0) {
+  return (
+    <div className="col-12">
+      <div className="alert alert-warning text-center">
+        No Employees Found
+      </div>
+    </div>
+  );
+}
 
   return (
     <>

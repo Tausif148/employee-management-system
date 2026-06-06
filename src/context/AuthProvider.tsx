@@ -1,113 +1,240 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { userSignup, userLogin } from "src/api/index";
-import type { User, SignupData, LoginData, ApiResult } from 'src/interface/useAuthTypes';
 
-interface AuthContextType {
-    user: User | null;
-    error: string;
-    success: string;
-    signup: (data: SignupData) => boolean;
-    login: (data: LoginData) => boolean;
-    logout: () => void;
-}
+import { userLogin, userSignup } from "src/api";
+
+import type {
+  ApiResult,
+  AuthContextType,
+  LoginData,
+  ProfileData,
+  SignupData,
+  User,
+  ChangePasswordData,
+} from "src/interface/useAuthTypes";
+
+// ======================
+// Context
+// ======================
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-interface Props {
-    children: ReactNode;
+// ======================
+// Props
+// ======================
+
+interface AuthProviderProps {
+  children: ReactNode;
 }
 
-const AuthProvider = ({ children }: Props) => {
-    const [user, setUser] = useState<User | any>(null);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+// ======================
+// Provider
+// ======================
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem("loggedAdmin");
+const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
+  // ======================
+  // Load User
+  // ======================
 
-    const signup = ({
-        name,
-        email,
-        password,
-        confirmPassword,
-    }: SignupData): boolean => {
-        const result = userSignup({
-            name,
-            email,
-            password,
-            confirmPassword,
-        }) as ApiResult;
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedAdmin");
 
-        if (result.success) {
-            setError("");
-            setSuccess(result.message);
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
-            setUser({
-                name,
-                email,
-            });
+  // ======================
+  // Signup
+  // ======================
 
-            localStorage.setItem(
-                "loggedAdmin",
-                JSON.stringify({ name, email })
-            );
+  const signup = ({
+    name,
+    email,
+    password,
+    confirmPassword,
+  }: SignupData): boolean => {
+    const result = userSignup({
+      name,
+      email,
+      password,
+      confirmPassword,
+    }) as ApiResult;
 
-            return true;
-        }
+    if (!result.success) {
+      setSuccess("");
+      setError(result.message);
+      return false;
+    }
 
-        setSuccess("");
-        setError(result.message);
-        return false;
+    const newUser: User = {
+      name,
+      email,
+      password,
     };
 
-    const login = ({ email, password }: LoginData): boolean => {
-        const result = userLogin({ email, password }) as ApiResult;
+    setUser(newUser);
+    setError("");
+    setSuccess(result.message);
 
-        if (result.success) {
-            setError("");
-            setSuccess(result.message);
+    localStorage.setItem("loggedAdmin", JSON.stringify(newUser));
 
-            setUser(result.user);
+    return true;
+  };
 
-            localStorage.setItem(
-                "loggedAdmin",
-                JSON.stringify(result.user)
-            );
+  // ======================
+  // Login
+  // ======================
 
-            return true;
-        }
+  const login = ({ email, password }: LoginData): boolean => {
+    const result = userLogin({
+      email,
+      password,
+    }) as ApiResult;
 
-        setSuccess("");
-        setError(result.message);
+    if (!result.success) {
+      setSuccess("");
+      setError(result.message);
+      return false;
+    }
 
-        return false;
+    setUser(result.user || null);
+    setError("");
+    setSuccess(result.message);
+
+    localStorage.setItem("loggedAdmin", JSON.stringify(result.user));
+
+    return true;
+  };
+
+  // ======================
+  // Update Profile
+  // ======================
+
+  const profile = ({
+    name,
+    email,
+    phone,
+    address,
+    bio,
+  }: ProfileData): boolean => {
+    const updatedUser: User = {
+      ...user,
+      name,
+      email,
+      phone,
+      address,
+      bio,
     };
 
-    const logout = () => {
-        localStorage.removeItem("loggedAdmin");
-        setUser(null);
+    setUser(updatedUser);
+
+    localStorage.setItem("loggedAdmin", JSON.stringify(updatedUser));
+
+    setError("");
+    setSuccess("Profile updated successfully");
+
+    return true;
+  };
+
+  // ======================
+  // Change paassword
+  // ======================
+  const changePassword = ({
+    oldPassword,
+    newPassword,
+    confirmPassword,
+  }: ChangePasswordData): boolean => {
+    if (!user) {
+      setSuccess("");
+      setError("User not found");
+      return false;
+    }
+
+    if (user.password !== oldPassword) {
+      setSuccess("");
+      setError("Old password is incorrect");
+      return false;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setSuccess("");
+      setError("Passwords do not match");
+      return false;
+    }
+
+    // Update current user
+    const updatedUser = {
+      ...user,
+      password: newPassword,
     };
 
-    return (
-        <AuthContext.Provider
-            value={{
-                user,
-                error,
-                success,
-                signup,
-                login,
-                logout,
-            }}
-        >
-            {children}
-        </AuthContext.Provider>
+    // Update logged in user
+    setUser(updatedUser);
+
+    localStorage.setItem("loggedAdmin", JSON.stringify(updatedUser));
+
+    // Update admins list
+    const admins = JSON.parse(localStorage.getItem("admins") || "[]");
+
+    const updatedAdmins = admins.map((admin: User) =>
+      admin.email === user.email
+        ? {
+            ...admin,
+            password: newPassword,
+          }
+        : admin,
     );
+
+    localStorage.setItem("admins", JSON.stringify(updatedAdmins));
+
+    setError("");
+    setSuccess("Password changed successfully");
+
+    return true;
+  };
+  // ======================
+  // Logout
+  // ======================
+
+  const logout = (): void => {
+    localStorage.removeItem("loggedAdmin");
+
+    setUser(null);
+    setSuccess("");
+    setError("");
+  };
+
+  // ======================
+  // Clear Messages
+  // ======================
+
+  const clearMessages = (): void => {
+    setSuccess("");
+    setError("");
+  };
+
+  // ======================
+  // Provider Value
+  // ======================
+
+  const value: AuthContextType = {
+    user,
+    success,
+    error,
+    signup,
+    login,
+    logout,
+    profile,
+    changePassword,
+    clearMessages,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
